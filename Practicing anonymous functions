@@ -1,0 +1,18 @@
+#Exercise 1: Filter and Transform with Lambda Functions.
+
+input_list = [1, 2, 3, 4, 5, 6]
+
+result = sum(map(lambda x: x**2, filter(lambda x: x % 2 != 0, input_list)))
+
+print("Input:", input_list)
+print("Output:", result)
+
+
+#Exercice 2: Sorting a List of Tuples.
+
+input_list = [("Juan", 25), ("Pablo", 30), ("Jose", 20)]
+
+sorted_list = sorted(input_list, key=lambda x: x[1])
+
+print("Input:", input_list)
+print("Output:", sorted_list)
