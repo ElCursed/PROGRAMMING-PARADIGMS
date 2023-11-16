@@ -1,0 +1,67 @@
+#1. Write a Python program that takes a list of numbers and uses lambda functions to filter out all the prime numbers from the list.
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+
+input_list = [2, 3, 4, 5, 6, 7, 8, 9]
+
+# Using lambda function to filter out prime numbers
+filtered_primes = list(filter(lambda x: is_prime(x), input_list))
+
+print("Input:", input_list)
+print("Output:", filtered_primes)
+
+
+#2. Write a Python program that takes a list of numbers and uses lambda functions to square each number and then calculates the average of the squared values.
+
+input_list = [1, 2, 3, 4, 5]
+
+squared_values = list(map(lambda x: x**2, input_list))
+
+average_squared = sum(squared_values) / len(squared_values)
+
+print("Input:", input_list)
+print("Squared Values:", squared_values)
+print("Average of Squared Values:", average_squared)
+
+
+#3. Write a Python program that takes a list of dictionaries, where each dictionary contains a name and an age, and uses lambda functions to sort the list by age in descending order.
+
+input_list = [
+    {"name": "Alice", "age": 25},
+    {"name": "Bob", "age": 30},
+    {"name": "Charlie", "age": 20}
+]
+
+sorted_list = sorted(input_list, key=lambda x: x["age"], reverse=True)
+
+print("Input:", input_list)
+print("Output:", sorted_list)
+
+
+#4.Write a Python program that takes a list of strings and uses lambda functions to filter out all the strings that contain the letter 'a'.Example: Input: ["apple", "banana", "cherry", "date", "fig"] Output: ["banana", "date"] Explanation: Filtering out the strings containing the letter 'a'.
+
+input_list = ["apple", "banana", "cherry", "date", "fig"]
+
+filtered_strings = list(filter(lambda x: 'a' in x, input_list))
+
+print("Input:", input_list)
+print("Output:", filtered_strings)
+
+
+#5. Write a Python program that takes a list of integers and uses lambda functions to calculate the factorial of each number in the list.
+
+from functools import reduce
+
+input_list = [1, 2, 3, 4, 5]
+
+factorials = list(map(lambda x: reduce(lambda a, b: a * b, range(1, x + 1)) if x > 0 else 1, input_list))
+
+print("Input:", input_list)
+print("Output:", factorials)
