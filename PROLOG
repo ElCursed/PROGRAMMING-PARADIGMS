@@ -1,0 +1,21 @@
+#Task 1: Implement a Prolog program that defines a family tree with at least three generations. Include rules to determine sibling relationships and ancestors.
+
+% Parent relationships
+parent(juan, pedro).
+parent(juan, ana).
+parent(maria, pedro).
+parent(maria, ana).
+
+parent(pedro, luis).
+parent(ana, teresa).
+parent(fernando, luis).
+parent(teresa, miguel).
+parent(rosa, raul).
+parent(luis, rosa).
+
+% Rules for defining siblings
+siblings(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+
+% Rules for defining ancestors
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
