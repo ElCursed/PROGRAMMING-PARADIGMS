@@ -1,0 +1,37 @@
+#Task 2: Utilize collections to represent a simple database of books. Implement queries to find books by a specific author or within a certain genre.
+
+class Book:
+    def __init__(self, title, author, genre):
+        self.title = title
+        self.author = author
+        self.genre = genre
+
+class BookDatabase:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, title, author, genre):
+        book = Book(title, author, genre)
+        self.books.append(book)
+
+    def find_books_by_author(self, author):
+        return [book for book in self.books if book.author == author]
+
+    def find_books_by_genre(self, genre):
+        return [book for book in self.books if book.genre == genre]
+
+database = BookDatabase()
+
+database.add_book("Diary of a Wimpy Kid", "Jeff Kinney", "Children's Fiction")
+database.add_book("Scott Pilgrim's Precious Little Life", "Bryan Lee O'Malley", "Graphic Novel")
+database.add_book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "Fantasy")
+
+author_books = database.find_books_by_author("J.K. Rowling")
+print("Books by J.K. Rowling:")
+for book in author_books:
+    print(f"{book.title} - {book.genre}")
+
+genre_books = database.find_books_by_genre("Graphic Novel")
+print("\nGraphic Novels:")
+for book in genre_books:
+    print(f"{book.title} - {book.author}")
