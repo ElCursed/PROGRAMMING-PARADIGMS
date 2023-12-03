@@ -1,0 +1,46 @@
+% Define the puzzle size
+size(9).
+
+% Main predicate to solve the Sudoku puzzle
+solve_sudoku(Puzzle, Solution) :-
+    Solution = Puzzle,
+    Puzzle = [Row1, Row2, Row3, Row4, Row5, Row6, Row7, Row8, Row9],
+
+    % Constraints
+    maplist(all_distinct, Puzzle), % Each row must have distinct values
+    transpose(Puzzle, Columns),
+    maplist(all_distinct, Columns), % Each column must have distinct values
+    blocks(Puzzle), % Each block (3x3 subgrid) must have distinct values
+
+    % Labeling
+    maplist(label, Puzzle). % Assign values to variables
+
+% Constraint for blocks (3x3 subgrids)
+blocks([R1, R2, R3, R4, R5, R6, R7, R8, R9]) :-
+    blocks_in_rows(R1, R2, R3),
+    blocks_in_rows(R4, R5, R6),
+    blocks_in_rows(R7, R8, R9).
+
+blocks_in_rows([], [], []).
+blocks_in_rows([A, B, C | Tail1], [D, E, F | Tail2], [G, H, I | Tail3]) :-
+    all_distinct([A, B, C, D, E, F, G, H, I]),
+    blocks_in_rows(Tail1, Tail2, Tail3).
+
+% Transpose a matrix
+transpose([], []).
+transpose([F|Fs], Ts) :-
+    transpose(F, [F|Fs], Ts).
+
+transpose([], _, []).
+transpose([_|Rs], Ms, [Ts|Tss]) :-
+    lists_firsts_rests(Ms, Ts, Ms1),
+    transpose(Rs, Ms1, Tss).
+
+% Labeling - assign values to variables
+label([]).
+label([L|Ls]) :- fd_labeling(L), label(Ls).
+
+% Example Usage:
+% Call solve_sudoku/2 with your Sudoku puzzle to get the solution
+% For example:
+% solve_sudoku([[5,3,_,_,7,_,_,_,_],[6,_,_,1,9,5,_,_,_],...], Solution).
