@@ -1,0 +1,21 @@
+#Task 2: Implement a logical system to model a scheduling problem. Define constraints related to time, resources, and dependencies to find an optimal solution.
+
+
+% Define tasks with their durations
+task_duration(task1, 3).
+task_duration(task2, 2).
+task_duration(task3, 4).
+
+% Main predicate to solve the scheduling problem
+schedule_tasks(Schedule) :-
+    findall(Task, task_duration(Task, _), Tasks),
+    schedule_tasks(Tasks, Schedule).
+
+schedule_tasks([], []).
+schedule_tasks([Task|Tasks], [ScheduledTask|Schedule]) :-
+    ScheduledTask = Task,
+    schedule_tasks(Tasks, Schedule).
+
+% Example Usage:
+% Call schedule_tasks/1 to get the scheduled tasks
+% schedule_tasks(Schedule).
