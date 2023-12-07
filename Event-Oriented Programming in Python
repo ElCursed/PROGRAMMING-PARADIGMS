@@ -3,13 +3,10 @@ from tkinter import Tk, Button
 def on_button_click():
     print("Button clicked!")
 
-# Create the main window
 window = Tk()
 window.title("Event-Driven Button")
 
-# Create the button
 button = Button(window, text="Click Me!", command=on_button_click)
 button.pack()
 
-# Start the main event loop
 window.mainloop()
